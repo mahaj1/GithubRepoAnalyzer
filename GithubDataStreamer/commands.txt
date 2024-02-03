@@ -1,0 +1,5 @@
+spark-submit --class SparkStreamingApp --master 'local[*]'  "/Users/saleh/Desktop/MIU Resources/BDT/GithubRepoAnalyzer/GithubDataStreamer/target/GithubDataStreamer-1.0-SNAPSHOT.jar"
+
+
+reset group offsets
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group github-data-group --topic github-data-topic --reset-offsets --to-earliest --execute

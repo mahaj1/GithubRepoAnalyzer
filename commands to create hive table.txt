@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS github_repos (
+    repo_name STRING,
+    repo_id BIGINT,
+    created_date STRING,
+    num_of_watchers INT,
+    num_of_forks INT,
+    numb_of_open_issues INT,
+    language_used STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+
+
+
+LOAD DATA INPATH '/Users/saleh/Desktop/MIU Resources/BDT/GithubRepoAnalyzer/sample_data.csv' INTO TABLE github_repos;

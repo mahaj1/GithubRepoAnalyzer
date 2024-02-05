@@ -7,7 +7,7 @@ import java.net.URL;
 public class GitHubAPIClient {
 
     private static final String GITHUB_API_URL = "https://api.github.com/orgs/%s/repos?per_page=100&page=1";
-    private static final String ORGANIZATION_NAME = "google"; // Replace with your array of organization names
+    private static final String ORGANIZATION_NAME = "microsoft"; // Replace with your array of organization names
 
     public String fetchGitHubData() throws IOException {
         String apiUrl = String.format(GITHUB_API_URL, ORGANIZATION_NAME);

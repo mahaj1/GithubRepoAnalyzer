@@ -1,8 +1,10 @@
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.Serializable;
+import java.net.URL;
 
 public class Repository implements Serializable {
+    private String owner;
     private String name;
     private String id;
     private String createdAt;
@@ -20,6 +22,9 @@ public class Repository implements Serializable {
 
     // Add a constructor that takes a JsonNode and populates the fields
     public Repository(JsonNode repoNode) {
+
+        System.out.println("\n======================= forks : " + repoNode.get("forks") + " =======================\n");
+
         this.name = repoNode.get("name").asText();
         this.id = repoNode.get("id").asText();
         this.createdAt = repoNode.get("created_at").asText();
@@ -32,8 +37,22 @@ public class Repository implements Serializable {
         this.forks = repoNode.get("forks").asInt();
         this.openIssues = repoNode.get("open_issues").asInt();
         this.watchers = repoNode.get("watchers").asInt();
+
+        // Extract owner from htmlUrl
+        try {
+            URL url = new URL(this.htmlUrl);
+            String[] pathSegments = url.getPath().split("/");
+            if (pathSegments.length >= 2) {
+                this.owner = pathSegments[1];
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    public String getOwner() {
+        return owner;
+    }
     public String getName() {
         return name;
     }
@@ -135,7 +154,8 @@ public class Repository implements Serializable {
     @Override
     public String toString() {
         return "Repository{" +
-                "name='" + name + '\'' +
+                "owner='" + owner + '\'' +
+                ", name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +

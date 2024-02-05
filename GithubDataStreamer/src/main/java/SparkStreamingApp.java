@@ -13,11 +13,10 @@ import org.apache.spark.streaming.kafka010.KafkaUtils;
 //import org.apache.spark.streaming.kafka010.LocationStrategies;
 //import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
-import scala.Tuple2;
 import org.apache.spark.sql.*;
 
-import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static scala.Console.print;
 
@@ -58,6 +57,7 @@ public class SparkStreamingApp {
                 .getOrCreate();
 
         String tableName = "github_repositories";
+        AtomicInteger test_cnt = new AtomicInteger();
 
         // Extract relevant fields and do processing
         directKafkaStream.flatMap((FlatMapFunction<ConsumerRecord<String, String>, Repository>) record -> {
@@ -101,8 +101,15 @@ public class SparkStreamingApp {
 
             } else {
                 print("RDD is empty. No data to process.\n\n");
-                print("Existing Data: \n\n");
-                spark.sql("select * from "+tableName).show(10);
+                if (spark.catalog().tableExists(tableName)) {
+                    print("Existing Data: \n\n");
+                    spark.sql("select * from " + tableName).show(10);
+                }
+
+//                if (test_cnt.get() == 0){
+//                    spark.sql("DROP TABLE IF EXISTS "+tableName); // for testing purposes
+//                    test_cnt.getAndIncrement();
+//                }
             }
         });
 

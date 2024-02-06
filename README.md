@@ -9,6 +9,52 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 2. **Streaming Processing**: Spark Streaming processes the data from Kafka, transforms it, and stores it in Hive tables.
 3. **Analytical Processing**: Spark SQL is used to perform analytical queries on the processed data and store the results in Hive tables.
 
+# GitHub Data Processing Project
+
+- [Overview](#overview)
+- [Part 1: Data Ingestion](#part-1-data-ingestion)
+    - [Prerequisites](#prerequisites)
+    - [Setup and Configuration](#setup-and-configuration)
+    - [Usage](#usage)
+- [Part 2: Streaming Processing](#part-2-streaming-processing)
+    - [Prerequisites](#prerequisites-1)
+    - [Setup and Configuration](#setup-and-configuration-1)
+    - [Usage](#usage-1)
+- [Part 3: Analytical Processing](#part-3-analytical-processing)
+    - [Prerequisites](#prerequisites-2)
+    - [Setup and Configuration](#setup-and-configuration-2)
+    - [Usage](#usage-2)
+- [Data Analysis](#data-analysis)
+    - [Analysis 1: Repository Count by Language](#analysis-1-repository-count-by-language)
+    - [Analysis 2: Repository Count by Organization](#analysis-2-repository-count-by-organization)
+    - [Analysis 3: Repository Count by Year](#analysis-3-repository-count-by-year)
+    - [Analysis 4: Yearly Summary for Each Organization](#analysis-4-yearly-summary-for-each-organization)
+    - [Analysis 5: Top 5 Organizations by Repository Count](#analysis-5-top-5-organizations-by-repository-count)
+    - [Analysis 6: Top 5 Repositories by Stars](#analysis-6-top-5-repositories-by-stars)
+- [Steps to run the project](#steps-to-run-the-project)
+
+[//]: # (    - [Start Hadoop Components]&#40;#start-hadoop-components&#41;)
+
+[//]: # (    - [Start Zookeeper server]&#40;#start-zookeeper-server&#41;)
+
+[//]: # (    - [Start Kafka server]&#40;#start-kafka-server&#41;)
+
+[//]: # (    - [Start Hive Metastore]&#40;#start-hive-metastore&#41;)
+
+[//]: # (    - [Start Spark Thrift Server]&#40;#start-spark-thrift-server&#41;)
+
+[//]: # (    - [Run the GitHubDataProducer]&#40;#run-the-githubdataproducer&#41;)
+
+[//]: # (    - [Run the GithubDataStreamer]&#40;#run-the-githubdatastreamer&#41;)
+
+[//]: # (    - [Run the GithubDataAnalyzer]&#40;#run-the-githubdataanalyzer&#41;)
+
+[//]: # (    - [Browse the Hive tables data]&#40;#browse-the-hive-tables-data&#41;)
+
+[//]: # (    - [Run the Hive queries]&#40;#run-the-hive-queries&#41;)
+
+[//]: # (    - [To run all the programs using Apache Airflow]&#40;#to-run-all-the-programs-using-apache-airflow&#41;)
+
 ## Part 1: Data Ingestion
 
 ### Prerequisites
@@ -177,5 +223,13 @@ These analyses aim to provide insights into repository distribution, organizatio
     Browse the Airflow UI:
     http://localhost:8080/
     Trigger the DAG to run all the programs.
+
+## Visualizations using tableau:
+![GitHub Data Processing](tableau/1.png)
+![GitHub Data Processing](tableau/2.png)
+![GitHub Data Processing](tableau/3.png)
+![GitHub Data Processing](tableau/4.png)
+![GitHub Data Processing](tableau/5.png)
+![GitHub Data Processing](tableau/6.png)
     
 

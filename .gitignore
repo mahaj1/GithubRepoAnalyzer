@@ -12,6 +12,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+gta_airflow/
+
 .idea/
 */.idea/
 

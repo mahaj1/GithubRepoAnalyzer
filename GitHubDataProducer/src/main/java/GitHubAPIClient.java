@@ -6,11 +6,10 @@ import java.net.URL;
 
 public class GitHubAPIClient {
 
-    private static final String GITHUB_API_URL = "https://api.github.com/orgs/%s/repos?per_page=100&page=1";
-    private static final String ORGANIZATION_NAME = "microsoft"; // Replace with your array of organization names
+    private static final String GITHUB_API_URL = "https://api.github.com/orgs/%s/repos?per_page=1000&page=1";
 
-    public String fetchGitHubData() throws IOException {
-        String apiUrl = String.format(GITHUB_API_URL, ORGANIZATION_NAME);
+    public String fetchGitHubData(String orgName) throws IOException {
+        String apiUrl = String.format(GITHUB_API_URL, orgName);
 
         // Create URL object
         URL url = new URL(apiUrl);
@@ -29,12 +28,9 @@ public class GitHubAPIClient {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                 StringBuilder content = new StringBuilder();
                 String line;
-
                 while ((line = reader.readLine()) != null) {
                     content.append(line);
-                    System.out.println(line);
                 }
-
                 return content.toString();
             }
         } else {

@@ -22,9 +22,6 @@ public class Repository implements Serializable {
 
     // Add a constructor that takes a JsonNode and populates the fields
     public Repository(JsonNode repoNode) {
-
-        System.out.println("\n======================= forks : " + repoNode.get("forks") + " =======================\n");
-
         this.name = repoNode.get("name").asText();
         this.id = repoNode.get("id").asText();
         this.createdAt = repoNode.get("created_at").asText();

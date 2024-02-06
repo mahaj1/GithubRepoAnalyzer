@@ -57,7 +57,6 @@ public class SparkStreamingApp {
                 .getOrCreate();
 
         String tableName = "github_repositories";
-        AtomicInteger test_cnt = new AtomicInteger();
 
         // Extract relevant fields and do processing
         directKafkaStream.flatMap((FlatMapFunction<ConsumerRecord<String, String>, Repository>) record -> {
@@ -81,7 +80,8 @@ public class SparkStreamingApp {
             return repositories.iterator();
         }).foreachRDD(rdd -> {
             if (!rdd.isEmpty()) { // Check if the RDD is not empty
-                print("Processing new RDD...");
+                print("\n\n================== Processing New RDD ==================\n");
+                print("Found " + rdd.count() + " new repository entries in the Kafka topic.\n\n");
 
                 // Convert RDD to DataFrame
                 Dataset<Row> repoDF = spark.createDataFrame(rdd, Repository.class);
@@ -93,19 +93,19 @@ public class SparkStreamingApp {
                     repoDF.write().mode(SaveMode.Append).saveAsTable(tableName);
                 } else {
                     // If the table doesn't exist, create a new table
-                    System.out.println("Table does not exist.");
+                    System.out.println("Table does not exist. Creating a new table...");
                     repoDF.write().saveAsTable(tableName);
                 }
 
-                print("\n\nRDD Mapped:\n\n" + rdd.collect());
+                print("\n\nRDD Mapped..........\n\n" );
+                print("Number of rows in the RDD: " + rdd.count() + "\n\n");
+                print("================== Processing Done ==================\n");
 
             } else {
                 print("RDD is empty. No data to process.\n\n");
                 if (spark.catalog().tableExists(tableName)) {
-                    print("Existing Data: \n\n");
-                    spark.sql("select * from " + tableName).show(10);
+                    print("Number of existing rows: " + spark.table(tableName).count() + "\n\n");
                 }
-
 //                if (test_cnt.get() == 0){
 //                    spark.sql("DROP TABLE IF EXISTS "+tableName); // for testing purposes
 //                    test_cnt.getAndIncrement();

@@ -33,6 +33,18 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version> <!-- Adjust version if needed -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>GitHubDataProducer</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.0</version> <!-- Use the latest version -->
                 <configuration>

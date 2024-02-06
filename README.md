@@ -128,3 +128,53 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 - **Steps:** Orders data by stars in descending order and selects the top five repositories.
 
 These analyses aim to provide insights into repository distribution, organizational contributions, temporal trends, and top-performing entities within the GitHub dataset.
+
+
+## Steps to run the project:
+1. Start Hadoop Components
+    ```bash
+   start-all.sh
+    ```
+2. Start Zookeeper server:
+    ```bash
+   $KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties
+    ```
+3. Start Kafka server:
+    ```bash
+    $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
+     ```
+4. Start Hive Metastore:
+    ```bash
+    hive --service metastore
+    ```
+5. Start Spark Thrift Server:
+    ```bash
+    $SPARK_HOME/sbin/start-thriftserver.sh
+    ```
+6. Run the GitHubDataProducer to push the data to Kafka topic
+     ```bash
+     java -jar "/Users/saleh/Desktop/MIU Resources/BDT/GithubRepoAnalyzer/GitHubDataProducer/target/GitHubDataProducer-1.0-SNAPSHOT.jar"
+   ```
+7. Run the GithubDataStreamer to process the data from Kafka and store it in Hive tables.
+    ```bash
+    $SPARK_HOME/bin/spark-submit --master local[*] --deploy-mode client --class SparkStreamingApp --name spark-streamer-submit "/Users/saleh/Desktop/MIU Resources/BDT/GithubRepoAnalyzer/GithubDataStreamer/target/GithubDataStreamer-1.0-SNAPSHOT.jar
+    ```
+8. Run the GithubDataAnalyzer to perform analytical processing on the data stored in Hive tables.
+    ```bash
+    $SPARK_HOME/bin/spark-submit --master local[*] --deploy-mode client --class SparkSQLAnalysis --name spark-analyzer-submit "/Users/saleh/Desktop/MIU Resources/BDT/GithubRepoAnalyzer/GithubDataAnalyzer/target/GithubDataAnalyzer-1.0-SNAPSHOT.jar"
+    ```
+9. Browse the Hive tables data using the HDFS web UI:
+   http://127.0.0.1:9870/explorer.html#/user/hive/warehouse
+10. Run the Hive queries to perform analytical processing on the data stored in Hive tables.
+    ```bash
+    beeline -u jdbc:hive2://localhost:10000
+    ```
+11. To run all the programs using Apache Airflow:
+    ```bash
+    airflow webserver -p 8080
+    airflow scheduler
+    ```
+    Browse the Airflow UI:
+    Trigger the DAG to run all the programs.
+    
+

@@ -175,6 +175,7 @@ These analyses aim to provide insights into repository distribution, organizatio
     airflow scheduler
     ```
     Browse the Airflow UI:
+    http://localhost:8080/
     Trigger the DAG to run all the programs.
     
 

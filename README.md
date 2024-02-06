@@ -55,6 +55,9 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 
 [//]: # (    - [To run all the programs using Apache Airflow]&#40;#to-run-all-the-programs-using-apache-airflow&#41;)
 
+## Architecture Diagram
+![GitHub Data Processing](tableau/0.jpg)
+
 ## Part 1: Data Ingestion
 
 ### Prerequisites

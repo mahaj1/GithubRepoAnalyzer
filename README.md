@@ -163,18 +163,18 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 
 ### Analysis 4:  Maximum stargazers count per programming language
 
-- **Description:** Provides a summary for each organization, including total stars, watchers, forks, and open issues per year.
-- **Steps:** Groups data by year and organization, calculates total stars, watchers, forks, and open issues.
+- **Description:** find the maximum number of stars for each programming language.
+- **Steps:** Groups data by language ,and find the max of stars.
 
-### Analysis 5: 
+### Analysis 5:  Total forks and open issues per year
 
-- **Description:** Identifies the top five organizations with the highest number of repositories.
-- **Steps:** Groups data by organization, counts the number of repositories, and selects the top five organizations.
+- **Description:**count the forks and open issues for each year.
+- **Steps:** Groups data by year, counts the number of forks and open issues.
 
 ### Analysis 6: Yearly Summary for Each Organization
 
-- **Description:** Lists the top five repositories with the highest number of stars.
-- **Steps:** Orders data by stars in descending order and selects the top five repositories.
+- **Description:** Provides a summary for each organization, including total stars, watchers, forks, and open issues per year.
+- **Steps:**Groups data by year and organization, calculates total stars, watchers, forks, and open issues.
 
 These analyses aim to provide insights into repository distribution, organizational contributions, temporal trends, and top-performing entities within the GitHub dataset.
 

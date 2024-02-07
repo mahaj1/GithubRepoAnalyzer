@@ -151,10 +151,10 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 - **Description:** Counts the number of repositories for each programming language.
 - **Steps:** Extracts the "language" field from the GitHub repository data, groups by language, and counts the occurrences.
 
-### Analysis 2: Repository Count by Organization
+### Analysis 2: Average stars and forks per organization
 
-- **Description:** Counts the number of repositories for each organization.
-- **Steps:** Extracts the "owner" field from the GitHub repository data, groups by organization, and counts the occurrences.
+- **Description:** Counts the average number of stars and forks for each organaization.
+- **Steps:** Extracts the "owner" field from the GitHub repository data, groups by organization, and find avg for stars and the avg for forks.
 
 ### Analysis 3: Repository Count by Year
 

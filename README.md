@@ -161,17 +161,17 @@ This project processes GitHub repository data using Apache Kafka and Apache Spar
 - **Description:** Counts the number of repositories created each year.
 - **Steps:** Extracts the year from the "createdAt" field, groups by year, and counts the occurrences.
 
-### Analysis 4: Yearly Summary for Each Organization
+### Analysis 4:  Maximum stargazers count per programming language
 
 - **Description:** Provides a summary for each organization, including total stars, watchers, forks, and open issues per year.
 - **Steps:** Groups data by year and organization, calculates total stars, watchers, forks, and open issues.
 
-### Analysis 5: Top 5 Organizations by Repository Count
+### Analysis 5: 
 
 - **Description:** Identifies the top five organizations with the highest number of repositories.
 - **Steps:** Groups data by organization, counts the number of repositories, and selects the top five organizations.
 
-### Analysis 6: Top 5 Repositories by Stars
+### Analysis 6: Yearly Summary for Each Organization
 
 - **Description:** Lists the top five repositories with the highest number of stars.
 - **Steps:** Orders data by stars in descending order and selects the top five repositories.
